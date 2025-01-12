@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255; /* White text */
+  --background-rgb: 0, 0, 0; /* Black background */
+  --accent-rgb: 255, 255, 255; /* Accent color */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: 0, 0, 0; /* Black text */
+    --background-rgb: 255, 255, 255; /* White background */
+    --accent-rgb: 0, 0, 0; /* Accent color */
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text 3s infinite;
+}
+
+@keyframes gradient-text {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
+  transition: transform 0.3s ease-in-out;
+}
+
+form:hover {
+  transform: translateY(-5px);
+}
+
+input,
+select {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: rgb(var(--foreground-rgb));
+  outline: none;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgb(255, 255, 255);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+input::placeholder,
+select::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.submit-button {
+  width: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(var(--foreground-rgb));
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.submit-button:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+  transform: scale(1.05);
+}
+
+.error-message {
+  color: rgb(238, 80, 80);
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.error-message:empty {
+  display: none;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+input,
+select,
+button,
+h1 {
+  animation: fade-in 0.8s ease-in-out;
+}
