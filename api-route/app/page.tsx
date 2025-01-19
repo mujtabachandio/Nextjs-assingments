@@ -64,56 +64,65 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="p-8 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Books List</h1>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="border p-2 mr-2 text-black"
-        />
-        <input
-          type="text"
-          placeholder="Author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          className="border p-2 mr-2 text-black"
-        />
-        <button
-          onClick={handleSave}
-          className="bg-blue-500 text-white px-4 py-2"
-        >
-          {editId ? 'Update' : 'Add'}
-        </button>
+    <div className="min-h-screen bg-gray-100 py-12 px-6">
+      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
+        <h1 className="text-3xl font-bold text-gray-800 mb-6">Books Management</h1>
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">
+            {editId ? 'Edit Book' : 'Add New Book'}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input
+              type="text"
+              placeholder="Book Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+            />
+            <input
+              type="text"
+              placeholder="Author"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+              className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+            />
+            <button
+              onClick={handleSave}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition"
+            >
+              {editId ? 'Update Book' : 'Add Book'}
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-xl font-semibold text-gray-700 mb-4">Books List</h2>
+          <ul className="divide-y divide-gray-200">
+            {books.map((book) => (
+              <li key={book.id} className="flex justify-between items-center py-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800">{book.title}</h3>
+                  <p className="text-gray-600">by {book.author}</p>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleEdit(book)}
+                    className="bg-yellow-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-yellow-600 transition"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(book.id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <ul>
-        {books.map((book) => (
-          <li
-            key={book.id}
-            className="flex justify-between items-center border-b py-2"
-          >
-            <div>
-              <strong>{book.title}</strong> by {book.author}
-            </div>
-            <div>
-              <button
-                onClick={() => handleEdit(book)}
-                className="bg-yellow-500 text-white px-4 py-1 mr-2"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(book.id)}
-                className="bg-red-500 text-white px-4 py-1"
-              >
-                Delete
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
